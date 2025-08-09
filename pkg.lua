@@ -13,16 +13,6 @@ local function pkgUrl(pkgName)
     return REPO_URL:format(REPO_USERNAME, REPO_NAME, pkgName)
 end
 
-local completion = require "cc.shell.completion"
-local complete = completion.build(
-    function(text)
-        local response = http.get(pkgUrl('packages.json'))
-        local packages = textutils.unserialiseJSON(response.readAll())
-        return completion.choice(text, packages)
-    end
-)
-shell.setCompletionFunction("example.lua", complete)
-
 print("Downloading", arg_package)
 local response, err = http.get(pkgUrl(arg_package))
 if err ~= nil then
