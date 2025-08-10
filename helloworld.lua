@@ -1,1 +1,1 @@
-print("hello", os.getComputerLabel() or os.getComputerID())
+print("Hello", os.getComputerLabel() or os.getComputerID())
